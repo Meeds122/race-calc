@@ -4,10 +4,10 @@
 
 /*
 ** TODO:
-**     finish runSim() and bestResult()
-**     implement runSim() into main()
-**     output best time
-**     debug main(). There is an issue :(
+**     [DONE]finish runSim() and bestResult()
+**     [DONE]implement runSim() into main()
+**     [DONE]output best time
+**     [DONE]debug main(). There is an issue :(
 **     save results to CSV file
 */
 
