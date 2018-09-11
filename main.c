@@ -68,7 +68,7 @@ float runSim(Race *race, int interval, int number_of_laps)
     float prev_time = race->start_lap;
     //start at zero or one for the modulo test?
     for(int i = 1; i <= number_of_laps; i++){
-        if((i % interval) == 0){
+        if(((i % interval) == 0) && ((number_of_laps - i) > 5)){
             //pit stop
             time = ((race->pit_in_lap - prev_time) + (race->pit_out_lap - prev_time) + prev_time) + time;
             prev_time = race->start_lap; // reset lap time to initial times
@@ -138,6 +138,7 @@ int main()
 
     free(race);
 
+    //WINDOWS SPECIFIC
     system("PAUSE");
 
     return 0;
