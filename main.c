@@ -137,8 +137,7 @@ int main()
 
     free(race);
 
-    printf("<enter> to exit\n");
-    getchar();
+    system("PAUSE");
 
     return 0;
 }
