@@ -7,6 +7,7 @@
 **     finish runSim() and bestResult()
 **     implement runSim() into main()
 **     output best time
+**     debug main(). There is an issue :(
 **     save results to CSV file
 */
 
@@ -60,13 +61,30 @@ void printRace(Race *race)
 
 }
 
-float runSim(Race *race, int interval)
+float runSim(Race *race, int interval, int number_of_laps)
 {
-    return 100.0;
+    float time = race->start_lap;
+    float prev_time = race->start_lap;
+    //start at zero or one for the modulo test?
+    for(int i = 1; i <= number_of_laps; i++){
+        if((i % interval) == 0){
+            //pit stop
+            time = ((race->pit_in_lap - prev_time) + (race->pit_out_lap - prev_time) + prev_time) + time;
+            prev_time = race->start_lap; // reset lap time to initial times
+        }
+        else{
+            prev_time = prev_time + race->drop_lap;
+            time = prev_time + time;
+        }
+    }
+    return time;
 }
 
-int bestResult(int *results)
+int bestResult(float *results, int length_of_array, int initial_interval, int end_interval, int incrementor)
 {
+    /*
+    returns the position of the best time in the array.
+    */
     return 12345;
 }
 
@@ -89,16 +107,24 @@ int main()
     printf("Laps to increase per test (whole number): ");
     scanf("%d", &incrementor);
 
-    int results[end_interval];
+    int laps;
+    printf("Laps in race: ");
+    scanf("%d", &laps);
+
+    float results[end_interval];
 
     //run sim for no pit stops
-    runSim(race, (race->total_laps + 1)); // pit stops > total laps in race.
+    //results[0] = runSim(race, (race->total_laps + 1)); // pit stops > total laps in race.
+
+    printf("Laps between pit stops: Time\n");
 
     for(int i = initial_interval; i <= end_interval; i += incrementor){
-        printf("%d\n", i);
+        results[i] = runSim(race, i, laps);
+        printf("%d: %d\n", i, results[i]);
     }
 
-    int best_time = bestResult(results);
+    int best_time_pos = bestResult(results, end_interval, initial_interval, end_interval, incrementor);
+    printf("Best time (%f) resulted with %d laps between pit stops", results[best_time_pos], best_time_pos);
 
     //TESTING
     //printRace(race);
