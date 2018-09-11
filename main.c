@@ -8,6 +8,7 @@
 **     [DONE]implement runSim() into main()
 **     [DONE]output best time
 **     [DONE]debug main(). There is an issue :(
+**     add logic to cancel pit stop if within 5 laps
 **     save results to CSV file
 */
 
