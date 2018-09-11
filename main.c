@@ -130,11 +130,15 @@ int main()
     }
 
     int best_time_pos = bestResult(results, end_interval, initial_interval, end_interval, incrementor);
-    printf("Best time (%f) resulted with %d laps between pit stops", results[best_time_pos], best_time_pos);
+    printf("Best time (%f) resulted with %d laps between pit stops\n", results[best_time_pos], best_time_pos);
 
     //TESTING
     //printRace(race);
 
     free(race);
+
+    printf("<enter> to exit\n");
+    getchar();
+
     return 0;
 }
