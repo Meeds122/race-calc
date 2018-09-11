@@ -85,7 +85,13 @@ int bestResult(float *results, int length_of_array, int initial_interval, int en
     /*
     returns the position of the best time in the array.
     */
-    return 12345;
+    int best_time_pos = initial_interval;
+    for(int i = initial_interval; i <= end_interval; i += incrementor){
+        if(results[best_time_pos] > results[i]){
+            best_time_pos = i;
+        }
+    }
+    return best_time_pos;
 }
 
 int main()
@@ -120,7 +126,7 @@ int main()
 
     for(int i = initial_interval; i <= end_interval; i += incrementor){
         results[i] = runSim(race, i, laps);
-        printf("%d: %d\n", i, results[i]);
+        printf("%d: %f\n", i, results[i]);
     }
 
     int best_time_pos = bestResult(results, end_interval, initial_interval, end_interval, incrementor);
